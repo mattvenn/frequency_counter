@@ -9,19 +9,13 @@ module frequency_counter(
     output wire         digit
     );
 
-    /*
-    update displays every update_period cycles
-    we only have 2 digits: we want to show 01 -> 99. 
+    // see calculations.py
+    localparam UPDATE_PERIOD = 1200; 
+    localparam BITS = 11;
 
-
-    assuming 10MHz input clock, 10 kHz would result in 1000 counts
-
-    */
-    localparam update_period = 1200; 
-
-    reg q0, q1, q2;             // metastability on input and a delay to detect edges
-    reg [15:0] edge_counter;    // how many edges have arrived in the counting period
-    reg [15:0] clk_counter;     // keep track of clocks in the counting period
+    reg q0, q1, q2;                 // metastability on input and a delay to detect edges
+    reg [6:0] edge_counter;         // how many edges have arrived in the counting period
+    reg [BITS-1:0] clk_counter;     // keep track of clocks in the counting period
 
     wire leading_edge_detect = q1 & (q2 != q1);
     reg [3:0] tens, units;
@@ -54,7 +48,7 @@ module frequency_counter(
                     clk_counter <= clk_counter + 1;
                     if(leading_edge_detect)
                         edge_counter <= edge_counter + 1;
-                    if(clk_counter >= update_period) begin
+                    if(clk_counter >= UPDATE_PERIOD) begin
                         clk_counter <= 0;
                         tens        <= 0;
                         units       <= 0;

@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
-[*] Sun Jan 24 17:18:03 2021
+[*] Sun Jan 24 17:26:21 2021
 [*]
 [dumpfile] "/home/matt/work/asic-workshop/course/frequency_counter/frequency_counter.vcd"
-[dumpfile_mtime] "Sun Jan 24 17:16:55 2021"
-[dumpfile_size] 295430
+[dumpfile_mtime] "Sun Jan 24 17:25:50 2021"
+[dumpfile_size] 117485
 [savefile] "/home/matt/work/asic-workshop/course/frequency_counter/frequency_counter.gtkw"
-[timestart] 1152700
+[timestart] 0
 [size] 1867 1018
 [pos] -1 -1
-*-15.840158 1311000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-25.840158 100626400 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] frequency_counter.
 [sst_width] 263
 [signals_width] 478
@@ -17,9 +17,7 @@
 [sst_vpaned_height] 292
 @28
 frequency_counter.clk
-@29
 frequency_counter.signal
-@28
 frequency_counter.reset
 @c00200
 -edge detect
@@ -44,12 +42,12 @@ frequency_counter.digit
 -seg out
 @200
 -
-@800200
+@800205
 -counters
-@24
-frequency_counter.clk_counter[15:0]
-frequency_counter.edge_counter[15:0]
-@1000200
+@25
+frequency_counter.clk_counter[10:0]
+frequency_counter.edge_counter[6:0]
+@1000205
 -counters
 @200
 -
