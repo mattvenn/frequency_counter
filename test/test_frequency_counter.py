@@ -12,10 +12,12 @@ async def reset(dut):
 
 @cocotb.test()
 async def test_all(dut):
-    clock = Clock(dut.clk, 10, units="us")
+    clock = Clock(dut.clk, 83.3, units="ns") # 12 MHz
     cocotb.fork(clock.start())
 
-    input_signal = Clock(dut.signal, 80, units="us")
+#    input_signal = Clock(dut.signal, 2, units="us") # 500kHz
+#    input_signal = Clock(dut.signal, 10, units="us") # 100kHz
+    input_signal = Clock(dut.signal, 1.45, units="us") # 69kHz
     cocotb.fork(input_signal.start())
 
     await reset(dut)

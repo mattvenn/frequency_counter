@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
-[*] Sun Jan 24 16:45:48 2021
+[*] Sun Jan 24 17:18:03 2021
 [*]
 [dumpfile] "/home/matt/work/asic-workshop/course/frequency_counter/frequency_counter.vcd"
-[dumpfile_mtime] "Sun Jan 24 16:38:40 2021"
-[dumpfile_size] 133894
+[dumpfile_mtime] "Sun Jan 24 17:16:55 2021"
+[dumpfile_size] 295430
 [savefile] "/home/matt/work/asic-workshop/course/frequency_counter/frequency_counter.gtkw"
-[timestart] 0
+[timestart] 1152700
 [size] 1867 1018
 [pos] -1 -1
-*-21.840158 10510000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-15.840158 1311000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] frequency_counter.
 [sst_width] 263
 [signals_width] 478
@@ -17,6 +17,9 @@
 [sst_vpaned_height] 292
 @28
 frequency_counter.clk
+@29
+frequency_counter.signal
+@28
 frequency_counter.reset
 @c00200
 -edge detect
@@ -64,16 +67,16 @@ frequency_counter.update_digits
 -state machine
 @200
 -
-@800201
+@800200
 -segments
-@29
+@28
 frequency_counter.seven_segment0.clk
 frequency_counter.seven_segment0.reset
 frequency_counter.seven_segment0.load
-@23
+@22
 frequency_counter.seven_segment0.tens_reg[3:0]
 frequency_counter.seven_segment0.units_reg[3:0]
-@1000201
+@1000200
 -segments
 [pattern_trace] 1
 [pattern_trace] 0

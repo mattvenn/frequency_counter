@@ -1,5 +1,5 @@
 `default_nettype none
-`timescale 1ns/1ns
+`timescale 1ns/1ps
 module frequency_counter(
     input wire          clk,
     input wire          reset,
@@ -9,12 +9,19 @@ module frequency_counter(
     output wire         digit
     );
 
-    // update displays every update_period cycles
-    localparam update_period = 500; 
+    /*
+    update displays every update_period cycles
+    we only have 2 digits: we want to show 01 -> 99. 
 
-    reg q0, q1, q2;
-    reg [15:0] edge_counter;
-    reg [15:0] clk_counter;
+
+    assuming 10MHz input clock, 10 kHz would result in 1000 counts
+
+    */
+    localparam update_period = 1200; 
+
+    reg q0, q1, q2;             // metastability on input and a delay to detect edges
+    reg [15:0] edge_counter;    // how many edges have arrived in the counting period
+    reg [15:0] clk_counter;     // keep track of clocks in the counting period
 
     wire leading_edge_detect = q1 & (q2 != q1);
     reg [3:0] tens, units;
