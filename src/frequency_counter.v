@@ -2,12 +2,14 @@
 `timescale 1ns/1ps
 module frequency_counter(
     input wire          clk,
-    input wire          reset,
+    input wire          reset_n,
     input wire          signal,
 
     output wire [6:0]   segments,
     output wire         digit
     );
+
+    assign reset = !reset_n;
 
     // see calculations.py
     localparam UPDATE_PERIOD = 1200; 
@@ -29,7 +31,7 @@ module frequency_counter(
 
     localparam STATE_COUNT  = 0;
     localparam STATE_TENS   = 1;
-    localparam STATE_UNITS   = 2;
+    localparam STATE_UNITS  = 2;
 
     reg [2:0] state = STATE_COUNT;
 
@@ -113,9 +115,9 @@ module seven_segment (
 
             digit <= ! digit;
             if(digit)
-                decode  <= tens;
-            else
                 decode  <= units;
+            else
+                decode  <= tens;
         end
     end
 
