@@ -5,10 +5,10 @@ import random
 
 async def reset(dut):
     dut.reset  <= 1
-
     await ClockCycles(dut.clk, 5)
     dut.reset <= 0;
     await ClockCycles(dut.clk, 5)
+
 
 @cocotb.test()
 async def test_all(dut):

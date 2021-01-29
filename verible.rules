@@ -1,0 +1,6 @@
+-explicit-parameter-storage-type
+-line-length
+-parameter-name-style
+-always-comb
+-unpacked-dimensions-range-ordering
+-no-tabs
