@@ -9,8 +9,10 @@ module frequency_counter #(
     input wire          reset_n,
     input wire          signal,
 
+    /* input clock is 12MHz, can't change it on the FPGA
     input wire [BITS-1:0]   period,
     input wire          period_load,
+    */
 
     output wire [6:0]   segments,
     output wire         digit
