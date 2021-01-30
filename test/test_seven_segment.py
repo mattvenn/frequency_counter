@@ -23,6 +23,15 @@ segments = {
     103 : 9,
     }
 
+async def read_segments(dut):
+    await RisingEdge(dut.digit)
+    tens = segments[int(dut.segments)]
+    await FallingEdge(dut.digit)
+    units = segments[int(dut.segments)]
+    number = tens * 10 + units
+    dut.log.info("segments show %02d" % number)
+    return number
+
 @cocotb.test()
 async def test_seven_segment(dut):
 
@@ -31,20 +40,12 @@ async def test_seven_segment(dut):
 
     await reset(dut)
 
-    for number in range(10):
-        dut.tens <= number
-        dut.load <= 1
-        await ClockCycles(dut.clk, 1)
-        dut.load <= 0
-        await ClockCycles(dut.clk, 1)
-        await RisingEdge(dut.digit)
-        assert segments[int(dut.segments)] == number
-
-    for number in range(10):
-        dut.units <= number
-        dut.load <= 1
-        await ClockCycles(dut.clk, 1)
-        dut.load <= 0
-        await ClockCycles(dut.clk, 1)
-        await FallingEdge(dut.digit)
-        assert segments[int(dut.segments)] == number
+    for tens in range(10):
+        for units in range(10):
+            dut.tens <= tens
+            dut.units <= units
+            dut.load <= 1
+            await ClockCycles(dut.clk, 1)
+            dut.load <= 0
+            await ClockCycles(dut.clk, 2) # have to wait a couple of cycles for flops
+            assert await read_segments(dut) == tens * 10 + units

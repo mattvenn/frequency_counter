@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
-[*] Sun Jan 24 17:26:21 2021
+[*] Sat Jan 30 17:31:47 2021
 [*]
 [dumpfile] "/home/matt/work/asic-workshop/course/frequency_counter/frequency_counter.vcd"
-[dumpfile_mtime] "Sun Jan 24 17:25:50 2021"
-[dumpfile_size] 117485
+[dumpfile_mtime] "Sat Jan 30 17:29:26 2021"
+[dumpfile_size] 159091
 [savefile] "/home/matt/work/asic-workshop/course/frequency_counter/frequency_counter.gtkw"
-[timestart] 0
+[timestart] 41900000
 [size] 1867 1018
 [pos] -1 -1
-*-25.840158 100626400 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-26.840158 689420201 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] frequency_counter.
 [sst_width] 263
 [signals_width] 478
@@ -31,6 +31,10 @@ frequency_counter.leading_edge_detect
 -edge detect
 @200
 -
+@28
+frequency_counter.period_load
+@24
+frequency_counter.update_period[11:0]
 @800200
 -seg out
 @2024
@@ -42,12 +46,13 @@ frequency_counter.digit
 -seg out
 @200
 -
-@800205
+@800200
 -counters
-@25
-frequency_counter.clk_counter[10:0]
+@24
 frequency_counter.edge_counter[6:0]
-@1000205
+@8024
+frequency_counter.clk_counter[11:0]
+@1000200
 -counters
 @200
 -
@@ -71,7 +76,7 @@ frequency_counter.update_digits
 frequency_counter.seven_segment0.clk
 frequency_counter.seven_segment0.reset
 frequency_counter.seven_segment0.load
-@22
+@25
 frequency_counter.seven_segment0.tens_reg[3:0]
 frequency_counter.seven_segment0.units_reg[3:0]
 @1000200
