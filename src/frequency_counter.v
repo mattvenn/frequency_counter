@@ -18,7 +18,7 @@ module frequency_counter #(
     output wire         digit
     );
 
-    assign reset = !reset_n;
+    wire reset = !reset_n;
 
     reg [BITS-1:0] update_period;
 
@@ -36,12 +36,14 @@ module frequency_counter #(
         q2 <= q1;
     end
 
+    /* not needed on FPGA
     always @(posedge clk) begin
         if(reset)
             update_period   <= UPDATE_PERIOD;
         else if(period_load)
             update_period   <= period;
     end
+    */
 
     localparam STATE_COUNT  = 0;
     localparam STATE_TENS   = 1;
