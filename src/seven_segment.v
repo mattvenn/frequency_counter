@@ -29,9 +29,9 @@ module seven_segment (
 
             digit <= ! digit;
             if(digit)
-                decode  <= tens_reg;
-            else
                 decode  <= units_reg;
+            else
+                decode  <= tens_reg;
         end
     end
 

@@ -36,14 +36,14 @@ module frequency_counter #(
         q2 <= q1;
     end
 
-    /* not needed on FPGA
     always @(posedge clk) begin
         if(reset)
             update_period   <= UPDATE_PERIOD;
+    /* not needed on FPGA
         else if(period_load)
             update_period   <= period;
-    end
     */
+    end
 
     localparam STATE_COUNT  = 0;
     localparam STATE_TENS   = 1;
