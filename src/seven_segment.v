@@ -12,7 +12,7 @@ module seven_segment (
 
     reg [3:0] ten_count_reg;
     reg [3:0] unit_count_reg;
-    reg [3:0] decode;
+    wire [3:0] decode;
 
 	always @(posedge clk) begin
 
@@ -28,12 +28,10 @@ module seven_segment (
             end
 
             digit <= ! digit;
-            if(digit)
-                decode          <= unit_count_reg;
-            else
-                decode          <= ten_count_reg;
         end
     end
+
+    assign decode = digit ? ten_count_reg : unit_count_reg;
 
     always @(*) begin
         case(decode)
