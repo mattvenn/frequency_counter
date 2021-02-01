@@ -5,15 +5,15 @@ module frequency_counter #(
     localparam UPDATE_PERIOD = 1200,
     localparam BITS = 12
 )(
-    input wire          clk,
-    input wire          reset,
-    input wire          signal,
+    input wire              clk,
+    input wire              reset,
+    input wire              signal,
 
     input wire [BITS-1:0]   period,
-    input wire          period_load,
+    input wire              period_load,
 
-    output wire [6:0]   segments,
-    output wire         digit
+    output wire [6:0]       segments,
+    output wire             digit
     );
 
     reg [BITS-1:0] update_period;
@@ -41,7 +41,7 @@ module frequency_counter #(
 
     localparam STATE_COUNT  = 0;
     localparam STATE_TENS   = 1;
-    localparam STATE_UNITS   = 2;
+    localparam STATE_UNITS  = 2;
 
     reg [2:0] state = STATE_COUNT;
 
@@ -50,8 +50,8 @@ module frequency_counter #(
             clk_counter     <= 0;
             edge_counter    <= 0;
             state           <= STATE_COUNT;
-            ten_count            <= 0;
-            unit_count           <= 0;
+            ten_count       <= 0;
+            unit_count      <= 0;
             update_digits   <= 0;
         end else begin
             case(state)
@@ -62,8 +62,8 @@ module frequency_counter #(
                         edge_counter <= edge_counter + 1;
                     if(clk_counter >= update_period) begin
                         clk_counter <= 0;
-                        ten_count        <= 0;
-                        unit_count       <= 0;
+                        ten_count   <= 0;
+                        unit_count  <= 0;
                         state       <= STATE_TENS;
                         end
                     end
@@ -77,7 +77,7 @@ module frequency_counter #(
                     end
 
                 STATE_UNITS: begin
-                    unit_count           <= edge_counter;
+                    unit_count      <= edge_counter;
                     update_digits   <= 1'b1;
                     edge_counter    <= 0;
                     state           <= STATE_COUNT;
