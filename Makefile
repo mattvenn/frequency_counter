@@ -1,6 +1,6 @@
 # FPGA variables
 PROJECT = fpga/frequency_counter
-SOURCES= src/frequency_counter.v src/seven_segment.v
+SOURCES= src/frequency_counter.v src/seven_segment.v src/edge_detect.v
 ICEBREAKER_DEVICE = up5k
 ICEBREAKER_PIN_DEF = fpga/icebreaker.pcf
 ICEBREAKER_PACKAGE = sg48
