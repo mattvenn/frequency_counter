@@ -6,7 +6,7 @@ module seven_segment (
     input wire [3:0]    unit_count,
     input wire          reset,
     input wire          clk,
-    output reg [6:0]   segments,
+    output reg [6:0]    segments,
     output reg          digit
 );
 
@@ -23,15 +23,15 @@ module seven_segment (
         end else begin
 
             if(load) begin
-                ten_count_reg    <= ten_count;
-                unit_count_reg   <= unit_count;
+                ten_count_reg   <= ten_count;
+                unit_count_reg  <= unit_count;
             end
 
             digit <= ! digit;
             if(digit)
-                decode  <= ten_count_reg;
+                decode          <= unit_count_reg;
             else
-                decode  <= unit_count_reg;
+                decode          <= ten_count_reg;
         end
     end
 
