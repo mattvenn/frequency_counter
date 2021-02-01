@@ -73,7 +73,7 @@ module frequency_counter #(
                 end
 
                 STATE_TENS: begin
-                    if(edge_counter < 7'd10) 
+                    if(edge_counter < 7'd10)
                         state <= STATE_UNITS;
                     else begin
                         edge_counter <= edge_counter - 7'd10;
