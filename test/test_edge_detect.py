@@ -19,8 +19,12 @@ async def test_edge_detect(dut):
             # wait for rising edge of input signal
             await RisingEdge(dut.signal)
 
-            # edge detect must go high within 2 clock cycles
-            await with_timeout (RisingEdge(dut.leading_edge_detect), 20, 'us') 
+            # edge detect must go high in at most 2 clock cycles
+            for cycles in range(3):
+                if dut.leading_edge_detect == 1:
+                    break
+                await RisingEdge(dut.clk)
+            assert dut.leading_edge_detect == 1
 
             # wait for another full clock cycle 
             await RisingEdge(dut.clk)
