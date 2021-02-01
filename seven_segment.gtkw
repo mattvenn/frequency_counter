@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.103 (w)1999-2019 BSI
-[*] Fri Jan 29 13:39:57 2021
+[*] Mon Feb  1 16:16:58 2021
 [*]
 [dumpfile] "/home/matt/work/asic-workshop/course/frequency_counter/seven_segment.vcd"
-[dumpfile_mtime] "Fri Jan 29 13:38:26 2021"
-[dumpfile_size] 1305
+[dumpfile_mtime] "Mon Feb  1 16:15:22 2021"
+[dumpfile_size] 21873
 [savefile] "/home/matt/work/asic-workshop/course/frequency_counter/seven_segment.gtkw"
-[timestart] 0
+[timestart] 372900000
 [size] 2046 1082
 [pos] -1 -1
-*-26.000000 150000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-26.000000 794600000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [sst_width] 273
 [signals_width] 451
 [sst_expanded] 1
@@ -17,10 +17,19 @@
 @28
 seven_segment.clk
 seven_segment.reset
-seven_segment.load
+@200
+-
 @22
-seven_segment.tens_reg[3:0]
-seven_segment.units_reg[3:0]
+seven_segment.ten_count[3:0]
+seven_segment.unit_count[3:0]
+@28
+seven_segment.load
+@200
+-
+@28
+seven_segment.digit
+@2025
+^1 /home/matt/work/asic-workshop/course/frequency_counter/segments.txt
 seven_segment.segments[6:0]
 [pattern_trace] 1
 [pattern_trace] 0

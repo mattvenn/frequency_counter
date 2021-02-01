@@ -6,14 +6,6 @@ module edge_detect (
     output wire             leading_edge_detect
     );
 
-    reg q0, q1, q2;                 // metastability on input and a delay to detect edges
-
-    always @(posedge clk) begin
-        q0 <= signal;
-        q1 <= q0;
-        q2 <= q1;
-    end
-
-    assign leading_edge_detect = q1 & (q2 != q1);
+    assign leading_edge_detect = 0;
 
 endmodule
