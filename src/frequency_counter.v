@@ -16,10 +16,10 @@ module frequency_counter #(
     output wire             digit
     );
 
-    reg [BITS-1:0] update_period;
+    reg [BITS-1:0] update_period;   // measure incoming signal edges for this period
 
     reg q0, q1, q2;                 // metastability on input and a delay to detect edges
-    reg [6:0] edge_counter;         // how many edges have arrived in the counting period
+    reg [6:0] edge_counter;         // how many edges have arrived in the counting period, max can show is 99, so limit to 7 bits
     reg [BITS-1:0] clk_counter;     // keep track of clocks in the counting period
 
     wire leading_edge_detect = q1 & (q2 != q1);
@@ -56,10 +56,10 @@ module frequency_counter #(
         end else begin
             case(state)
                 STATE_COUNT: begin
-                    update_digits   <= 1'b0;
-                    clk_counter <= clk_counter + 1;
+                    update_digits   <= 0;
+                    clk_counter <= clk_counter + 1'b1;
                     if(leading_edge_detect)
-                        edge_counter <= edge_counter + 1;
+                        edge_counter <= edge_counter + 1'b1;
                     if(clk_counter >= update_period) begin
                         clk_counter <= 0;
                         ten_count   <= 0;
@@ -69,8 +69,8 @@ module frequency_counter #(
                     end
 
                 STATE_TENS: begin
-                    if(edge_counter >= 10) begin
-                        edge_counter <= edge_counter - 10;
+                    if(edge_counter >= 7'd10) begin
+                        edge_counter <= edge_counter - 7'd10;
                         ten_count <= ten_count + 1;
                     end else
                         state <= STATE_UNITS;
