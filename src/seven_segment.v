@@ -14,7 +14,7 @@ module seven_segment (
     reg [3:0] unit_count_reg;
     wire [3:0] decode;
 
-	always @(posedge clk) begin
+    always @(posedge clk) begin
 
         if(reset) begin
 

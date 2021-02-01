@@ -1,0 +1,27 @@
+[*]
+[*] GTKWave Analyzer v3.3.103 (w)1999-2019 BSI
+[*] Mon Feb  1 12:47:17 2021
+[*]
+[dumpfile] "/home/matt/work/asic-workshop/course/frequency_counter/edge_detect.vcd"
+[dumpfile_mtime] "Mon Feb  1 12:46:48 2021"
+[dumpfile_size] 590
+[savefile] "/home/matt/work/asic-workshop/course/frequency_counter/edge_detect.gtkw"
+[timestart] 0
+[size] 1472 756
+[pos] -1 -1
+*-25.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 273
+[signals_width] 372
+[sst_expanded] 1
+[sst_vpaned_height] 191
+@28
+edge_detect.clk
+@29
+edge_detect.signal
+@28
+edge_detect.q0
+edge_detect.q1
+edge_detect.q2
+edge_detect.leading_edge_detect
+[pattern_trace] 1
+[pattern_trace] 0
