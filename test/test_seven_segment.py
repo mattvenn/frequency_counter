@@ -42,8 +42,8 @@ async def test_seven_segment(dut):
 
     for tens in range(10):
         for units in range(10):
-            dut.tens <= tens
-            dut.units <= units
+            dut.ten_count <= tens
+            dut.unit_count <= units
             dut.load <= 1
             await ClockCycles(dut.clk, 1)
             dut.load <= 0

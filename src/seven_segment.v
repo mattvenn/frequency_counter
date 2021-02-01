@@ -2,36 +2,36 @@
 `timescale 1ns/1ps
 module seven_segment (
     input wire          load,
-    input wire [3:0]    tens,
-    input wire [3:0]    units,
+    input wire [3:0]    ten_count,
+    input wire [3:0]    unit_count,
     input wire          reset,
     input wire          clk,
     output reg [6:0]   segments,
     output reg          digit
 );
 
-    reg [3:0] tens_reg;
-    reg [3:0] units_reg;
+    reg [3:0] ten_count_reg;
+    reg [3:0] unit_count_reg;
     reg [3:0] decode;
 
 	always @(posedge clk) begin
-        
+
         if(reset) begin
 
             digit <= 0;
 
         end else begin
-        
+
             if(load) begin
-                tens_reg    <= tens;
-                units_reg   <= units;
+                ten_count_reg    <= ten_count;
+                unit_count_reg   <= unit_count;
             end
 
             digit <= ! digit;
             if(digit)
-                decode  <= units_reg;
+                decode  <= ten_count_reg;
             else
-                decode  <= tens_reg;
+                decode  <= unit_count_reg;
         end
     end
 
@@ -48,7 +48,7 @@ module seven_segment (
             7:  segments = 7'b0000111;
             8:  segments = 7'b1111111;
             9:  segments = 7'b1100111;
-            default:    
+            default:
                 segments = 7'b0000000;
         endcase
     end
