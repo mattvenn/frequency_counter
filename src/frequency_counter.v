@@ -23,9 +23,9 @@ module frequency_counter #(
     reg [BITS-1:0] clk_counter;     // keep track of clocks in the counting period
 
     wire leading_edge_detect = q1 & (q2 != q1);
-    reg [3:0] tens, units;
+    reg [3:0] ten_count, unit_count;
     reg update_digits;
-    
+
     always @(posedge clk) begin
         q0 <= signal;
         q1 <= q0;
@@ -50,8 +50,8 @@ module frequency_counter #(
             clk_counter     <= 0;
             edge_counter    <= 0;
             state           <= STATE_COUNT;
-            tens            <= 0;
-            units           <= 0;
+            ten_count            <= 0;
+            unit_count           <= 0;
             update_digits   <= 0;
         end else begin
             case(state)
@@ -62,8 +62,8 @@ module frequency_counter #(
                         edge_counter <= edge_counter + 1;
                     if(clk_counter >= update_period) begin
                         clk_counter <= 0;
-                        tens        <= 0;
-                        units       <= 0;
+                        ten_count        <= 0;
+                        unit_count       <= 0;
                         state       <= STATE_TENS;
                         end
                     end
@@ -71,13 +71,13 @@ module frequency_counter #(
                 STATE_TENS: begin
                     if(edge_counter >= 10) begin
                         edge_counter <= edge_counter - 10;
-                        tens <= tens + 1;
+                        ten_count <= ten_count + 1;
                     end else
                         state <= STATE_UNITS;
                     end
 
                 STATE_UNITS: begin
-                    units           <= edge_counter;
+                    unit_count           <= edge_counter;
                     update_digits   <= 1'b1;
                     edge_counter    <= 0;
                     state           <= STATE_COUNT;
@@ -91,6 +91,6 @@ module frequency_counter #(
         end
     end
 
-    seven_segment seven_segment0 (.clk(clk), .reset(reset), .load(update_digits), .tens(tens), .units(units), .segments(segments), .digit(digit));
+    seven_segment seven_segment0 (.clk(clk), .reset(reset), .load(update_digits), .ten_count(ten_count), .unit_count(unit_count), .segments(segments), .digit(digit));
 
 endmodule
