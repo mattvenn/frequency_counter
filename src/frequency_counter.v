@@ -1,7 +1,8 @@
 `default_nettype none
 `timescale 1ns/1ps
 module frequency_counter #(
-    // see calculations.py
+    // If a module starts with #() then it is parametisable. It can be instantiated with different settings
+    // for the localparams defined here. So the default is an UPDATE_PERIOD of 1200 and BITS = 12
     localparam UPDATE_PERIOD = 1200,
     localparam BITS = 12
 )(
