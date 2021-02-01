@@ -47,47 +47,51 @@ module frequency_counter #(
 
     always @(posedge clk) begin
         if(reset) begin
+
             clk_counter     <= 0;
             edge_counter    <= 0;
             state           <= STATE_COUNT;
             ten_count       <= 0;
             unit_count      <= 0;
             update_digits   <= 0;
+
         end else begin
             case(state)
                 STATE_COUNT: begin
                     update_digits   <= 0;
                     clk_counter <= clk_counter + 1'b1;
+
                     if(leading_edge_detect)
                         edge_counter <= edge_counter + 1'b1;
+
                     if(clk_counter >= update_period) begin
                         clk_counter <= 0;
                         ten_count   <= 0;
                         unit_count  <= 0;
                         state       <= STATE_TENS;
-                        end
                     end
+                end
 
                 STATE_TENS: begin
-                    if(edge_counter >= 7'd10) begin
-                        edge_counter <= edge_counter - 7'd10;
-                        ten_count <= ten_count + 1;
-                    end else
+                    if(edge_counter < 7'd10) 
                         state <= STATE_UNITS;
+                    else begin
+                        edge_counter <= edge_counter - 7'd10;
+                        ten_count   <= ten_count + 1;
                     end
+                end
 
                 STATE_UNITS: begin
                     unit_count      <= edge_counter;
                     update_digits   <= 1'b1;
                     edge_counter    <= 0;
                     state           <= STATE_COUNT;
-                    end
+                end
 
                 default:
                     state           <= STATE_COUNT;
 
             endcase
-
         end
     end
 
