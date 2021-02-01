@@ -29,7 +29,7 @@ async def read_segments(dut):
     await RisingEdge(dut.digit)
     units = segments[int(dut.segments)]
     number = tens * 10 + units
-    dut.log.info("segments show %02d" % number)
+    dut.log.debug("segments show %02d" % number)
     return number
 
 @cocotb.test()
