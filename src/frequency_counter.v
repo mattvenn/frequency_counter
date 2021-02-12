@@ -39,7 +39,7 @@ module frequency_counter #(
     localparam STATE_TENS   = 1;
     localparam STATE_UNITS  = 2;
 
-    reg [2:0] state = STATE_COUNT;
+    reg [2:0] state;
 
     always @(posedge clk) begin
         if(reset) begin
