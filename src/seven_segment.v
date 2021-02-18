@@ -19,6 +19,8 @@ module seven_segment (
         if(reset) begin
 
             digit <= 0;
+            ten_count_reg <= 0;
+            unit_count_reg <= 0;
 
         end else begin
 
