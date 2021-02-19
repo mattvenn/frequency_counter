@@ -2,8 +2,8 @@
 `timescale 1ns/1ps
 module frequency_counter #(
     // see calculations.py
-    localparam UPDATE_PERIOD = 1200,
-    localparam BITS = 12
+    parameter UPDATE_PERIOD = 1200,
+    parameter BITS = 12
 )(
     input wire              clk,
     input wire              reset,
