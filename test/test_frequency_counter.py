@@ -35,9 +35,10 @@ async def test_all(dut):
 
     clock = Clock(dut.clk, clk_period_ns, units="ns")
     cocotb.fork(clock.start())
+    await reset(dut)
    
     # adjust the update period to match clock freq
-    period = clock_mhz * 100
+    period = clock_mhz * 100 - 1
     await update_period(dut, period)
     
     for input_freq in [10, 69, 90]:
