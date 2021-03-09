@@ -1,6 +1,6 @@
 import cocotb
 from cocotb.clock import Clock
-from cocotb.triggers import RisingEdge, FallingEdge, ClockCycles
+from cocotb.triggers import RisingEdge, FallingEdge, ClockCycles, with_timeout
 import random
 
 async def reset(dut):
@@ -24,9 +24,9 @@ segments = {
     }
 
 async def read_segments(dut):
-    await FallingEdge(dut.digit)
+    await with_timeout(FallingEdge(dut.digit), 100, 'us')
     tens = segments[int(dut.segments)]
-    await RisingEdge(dut.digit)
+    await with_timeout(RisingEdge(dut.digit), 100, 'us')
     units = segments[int(dut.segments)]
     number = tens * 10 + units
     dut.log.debug("segments show %02d" % number)
