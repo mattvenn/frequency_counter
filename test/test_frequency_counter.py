@@ -1,7 +1,7 @@
 import cocotb
 from cocotb.clock import Clock
 from cocotb.triggers import RisingEdge, FallingEdge, ClockCycles
-from test.test_seven_segment import read_segments
+from test_seven_segment import read_segments
 import random
 
 async def reset(dut):
@@ -47,8 +47,8 @@ async def test_all(dut):
         dut.log.info("input freq = %d kHz, period = %.2f us" %  (input_freq, period_us))
         input_signal = cocotb.fork(Clock(dut.signal, period_us,  units="us").start())
 
-        # give it 3 update periods to allow counters to adjust
-        await ClockCycles(dut.clk, period * 3)
+        # give it 4 update periods to allow counters to adjust
+        await ClockCycles(dut.clk, period * 4)
         assert await read_segments(dut) == input_freq
 
         # kill signal
