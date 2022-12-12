@@ -34,7 +34,7 @@ module frequency_counter #(
                 STATE_COUNT: begin
                     // count edges and clock cycles
 
-                    // if clock cycles > UPDATE_PERIOD then go to next state
+                    // if clock cycles >= UPDATE_PERIOD then go to next state
                 end
 
                 STATE_TENS: begin
