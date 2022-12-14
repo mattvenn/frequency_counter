@@ -21,7 +21,7 @@ async def update_period(dut, period):
 @cocotb.test()
 async def test_load(dut):
     clock = Clock(dut.clk, 10, units="us")
-    cocotb.fork(clock.start())
+    cocotb.start_soon(clock.start())
     await reset(dut)
     for period in range(0, 2000, 100):
         await update_period(dut, period)
@@ -34,7 +34,7 @@ async def test_all(dut):
     dut._log.info("input clock = %d MHz, period = %.2f ns" %  (clock_mhz, clk_period_ns))
 
     clock = Clock(dut.clk, clk_period_ns, units="ns")
-    clock_sig = cocotb.fork(clock.start())
+    clock_sig = cocotb.start_soon(clock.start())
     await reset(dut)
    
     # adjust the update period to match clock freq
@@ -45,7 +45,7 @@ async def test_all(dut):
         # create an input signal
         period_us = round((1/input_freq) * 100, 3)
         dut._log.info("input freq = %d kHz, period = %.2f us" %  (input_freq, period_us))
-        input_signal = cocotb.fork(Clock(dut.signal, period_us,  units="us").start())
+        input_signal = cocotb.start_soon(Clock(dut.signal, period_us,  units="us").start())
 
         # give it 4 update periods to allow counters to adjust
         await ClockCycles(dut.clk, period * 4)
