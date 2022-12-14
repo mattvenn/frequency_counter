@@ -6,11 +6,11 @@ from cocotb.triggers import RisingEdge, FallingEdge, ClockCycles, with_timeout
 async def test_edge_detect(dut):
 
     clock = Clock(dut.clk, 10, units="us")
-    cocotb.fork(clock.start())
+    cocotb.start_soon(clock.start())
 
     # unsynchronised input signal
     for input_signal_period in [50, 100, 333, 600]:
-        input_signal = cocotb.fork(Clock(dut.signal, input_signal_period,  units="us").start())
+        input_signal = cocotb.start_soon(Clock(dut.signal, input_signal_period,  units="us").start())
 
         # wait for unknown flip flop state to propagate and finish
         await ClockCycles(dut.clk, 10)

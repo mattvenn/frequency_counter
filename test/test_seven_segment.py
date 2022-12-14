@@ -38,7 +38,7 @@ async def read_segments(dut):
 async def test_seven_segment(dut):
 
     clock = Clock(dut.clk, 10, units="us")
-    cocotb.fork(clock.start())
+    cocotb.start_soon(clock.start())
 
     await reset(dut)
 
