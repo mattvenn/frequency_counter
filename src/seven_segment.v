@@ -12,7 +12,6 @@ module seven_segment (
 
     reg [3:0] ten_count_reg;
     reg [3:0] unit_count_reg;
-    wire [3:0] decode;
 
     always @(posedge clk) begin
 
@@ -33,10 +32,8 @@ module seven_segment (
         end
     end
 
-    assign decode = digit ? ten_count_reg : unit_count_reg;
-
     always @(*) begin
-        case(decode)
+        case(digit ? ten_count_reg : unit_count_reg)
             //                7654321
             0:  segments = 7'b0111111;
             1:  segments = 7'b0000110;
