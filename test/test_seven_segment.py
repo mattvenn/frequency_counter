@@ -50,4 +50,5 @@ async def test_seven_segment(dut):
             await ClockCycles(dut.clk, 1)
             dut.load.value = 0
             await ClockCycles(dut.clk, 2) # have to wait a couple of cycles for flops
-            assert await read_segments(dut) == tens * 10 + units
+            displayed_freq = await read_segments(dut)
+            assert displayed_freq == tens * 10 + units

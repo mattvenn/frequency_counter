@@ -49,7 +49,8 @@ async def test_all(dut):
 
         # give it 4 update periods to allow counters to adjust
         await ClockCycles(dut.clk, period * 4)
-        assert await read_segments(dut) == input_freq
+        displayed_freq = await read_segments(dut)
+        assert displayed_freq == input_freq
 
         # kill signal
         input_signal.kill()
