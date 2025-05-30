@@ -1,0 +1,20 @@
+name: Monthly Check
+
+on:
+  push:
+  schedule:
+    - cron: '0 8 1 * *'  # Run at 08:00 UTC on the 1st of every month
+  workflow_dispatch:
+
+jobs:
+  simulate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: mattvenn/z2a-course-regressions@main
+        with:
+          repo: mattvenn/frequency_counter
+          ref: main
+          command: make test_frequency_counter test_frequency_counter_with_period test_seven_segment test_edge_detect
+          artifact_file: frequency_counter.vcd
+

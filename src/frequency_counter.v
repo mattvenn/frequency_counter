@@ -21,10 +21,6 @@ module frequency_counter #(
     output wire [2:0]       dbg_edge_count  // top 3 bits of edge counter
     );
 
-    // debug assigns
-    assign dbg_state = state;
-    assign dbg_clk_count = clk_counter[BITS-1:BITS-3];
-    assign dbg_edge_count = edge_counter[6:4];
 
     reg [BITS-1:0] update_period;   // measure incoming signal edges for this period
 
@@ -50,6 +46,11 @@ module frequency_counter #(
     localparam STATE_UNITS  = 2;
 
     reg [1:0] state;
+    
+    // debug assigns
+    assign dbg_state = state;
+    assign dbg_clk_count = clk_counter[BITS-1:BITS-3];
+    assign dbg_edge_count = edge_counter[6:4];
 
     always @(posedge clk) begin
         if(reset) begin
